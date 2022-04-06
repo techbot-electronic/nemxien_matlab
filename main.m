@@ -19,60 +19,53 @@ end
 disp('Cong thuc tam nem xa cua vat la L=v^2*sin(2*alpha1)/g');
 disp('Do hai vat co cung tam nem xa va cung van toc ban dau nen sin(2*alpha1)=sin(2*alpha2)');
 disp('Do 0 < alpha2 < 90 nen alpha2 = 90 - alpha1 ');
+
 alpha2 = goc_vuong - alpha1;
-disp('Vay gia tri cua goc a2 la ' );
-disp(alpha2);
+
+fprintf('alpha1 = %d\n', alpha1); 
+fprintf('alpha2 = %d\n', alpha2);
 
 
+%% CALCULATION
+alpha1 = alpha1/180*pi;
+alpha2 = alpha2/180*pi;
+
+%thoi gian cham dat khi nem goc alpha1
+t1=(2*vo*sin(alpha1))/g; 
+fprintf('t1 = %f\n', t1); 
+
+%thoi gian cham dat khi nem goc alpha2
+t2=(2*vo*sin(alpha2))/g;
+fprintf('t2 = %f\n', t1);
 
 
+%% ZONE::::::TINH TOAN TOA DO DE VE DO THI
 
-
-
-
-
-syms a b v0 h1 h2 l1 l2 t g t1 t2 t3
-%nhap gia toc trong truong
-g = input('nhap vao gia tri gia toc trong truong g ');
-%nhap v0
-v0=input('Nhap v ');
-%nhap a1
-a1=input('Nhap vao goc a1 ');
-%nhap lai a1 neu a1>=pi/2
-if a1>=pi/2
-disp('xin nhap lai goc nem a1 ');
-end
-%neu a1 thoa dieu kien thi chay tiep phan duoi nay
-if a1<pi/2
-%in ra man cong thuc qua tam nem xa
-disp('Tam nem xa cua vat la L=v^2*sin(2*a1)/g');
-%in ra man hinh cach tiep can bai toan
-disp('Do hai vat co cung tam nem xa va cung van toc ban dau nen sin(2*a1)=sin(2*a2)');
-disp('Do 0<a2<pi/2 nen a2=pi/2-a1');
-a2=pi/2-a1;
-disp('Vay gia tri cua goc a2 la ' );
-disp(a2);
-%thoi gian cham dat khi nem goc a1
-t1=(2*v0*sin(a1))/g;
-%thoi gian cham dat khi nem goc a2
-t2=(2*v0*sin(a2))/g;
 %cho gia tri t chay tu t=0 den t=t1
-t=[0:0.01:t1];
-%tinh do cao khi goc la a1
-h1=v0*sin(a1).*t-g.*t.*t/2;
-%tinh tam xa khi goc la a1
-l1=v0*cos(a1).*t;
+t=[0:0.01:t1]; % step 0.01 -> t1 : 0.00 - 0.01 - 0.02
+
+%tinh do cao khi goc la alpha1
+h1=vo*sin(alpha1).*t-g.*t.*t/2; 
+
+
+%tinh tam xa khi goc la alpha1
+l1=vo*cos(alpha1).*t;
+
+
 %cho gia tri t3 chay tu t3=0 den t3=t2
 t3=[0:0.01:t2];
-%do cao khi goc la a2
-h2=v0*sin(a2).*t3-g.*t3.*t3/2;
-nhap vao gia tri gia toc trong truong g 
-%tam xa khi goc la a2
-l2=v0*cos(a2).*t3;
-% 2 do thi tren cung 1 hinh
+
+%do cao khi goc la alpha2
+h2=vo*sin(alpha2).*t3-g.*t3.*t3/2;
+
+%tam xa khi goc la alpha2
+l2=vo*cos(alpha2).*t3;
+
+% Gop 2 do thi cua goc alpha1 va goc alpha2
+%% FIGURE
 plot(l1,h1,l2,h2);
 hold on;
-legend('do thi quy dao cua vat khi goc nem la a1','do thi quy dao cua vat khi goc nem la a2');
+legend('do thi quy dao cua vat khi goc nem la alpha1','do thi quy dao cua vat khi goc nem la alpha2');
 %chu thich tieu de cua do thi
 title('do thi quy dao cua vat ung voi 2 goc nem');
 %chu thich truc x
@@ -80,4 +73,7 @@ xlabel('tam xa');
 %chu thich truc y
 ylabel('do cao');
 hold off
-End
+
+
+
+
