@@ -1,3 +1,35 @@
+%% Khai bao hang so
+g = 9.81;
+vo = 15;
+goc_vuong = 90;
+
+%% Nhap goc alpha1
+%% Kiem tra goc alpha1 co thoa dieu kien nem xien hay khong ( alpha1 < 90)
+ready = false;
+while ~ready
+  alpha1 = input('Nhap vao goc alpha1 ');
+  ready = (alpha1 < 90);
+  if ready
+     disp('Goc alpha1 nhap vao thoa man dieu kien nem xien ');
+  else
+     disp('Nhap lai alpha1 thoa dieu kien alpha1 < 90 degree '); 
+  end
+end
+
+disp('Cong thuc tam nem xa cua vat la L=v^2*sin(2*alpha1)/g');
+disp('Do hai vat co cung tam nem xa va cung van toc ban dau nen sin(2*alpha1)=sin(2*alpha2)');
+disp('Do 0 < alpha2 < 90 nen alpha2 = 90 - alpha1 ');
+alpha2 = goc_vuong - alpha1;
+disp('Vay gia tri cua goc a2 la ' );
+disp(alpha2);
+
+
+
+
+
+
+
+
 
 syms a b v0 h1 h2 l1 l2 t g t1 t2 t3
 %nhap gia toc trong truong
